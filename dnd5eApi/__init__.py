@@ -16,6 +16,9 @@ api = Api(app, prefix="/v1")
 
 import dnd5eApi.routes.endpoints
 
+# db.reflect()
+# db.drop_all()
+#
 # db.create_all()
 # db.session.commit()
 #

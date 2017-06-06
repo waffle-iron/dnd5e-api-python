@@ -1,4 +1,4 @@
-Class_Name = [
+Class_Names = [
 {
   "name": "Barbarian",
   "short_description": "A fierce warrior of primitive background who can enter a battle rage",
