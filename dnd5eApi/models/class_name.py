@@ -16,7 +16,7 @@ class ClassName(db.Model):
     weapon_proficiencies = db.Column(db.String, nullable=False)
     tools = db.Column(db.String, nullable=False)
     skill_choice = db.Column(db.String, nullable=False)
-    ability = db.relationship('Ability', secondary=class_primary_ability)
+    abilities = db.relationship('Ability', secondary=class_primary_ability)
 
     def __init__(self, name, short_description, description, subheading_one, subheading_two, creating_a, quick_build, hit_die, armor_proficiencies, weapon_proficiencies, tools, skill_choice):
         self.name = name

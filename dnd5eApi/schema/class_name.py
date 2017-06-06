@@ -17,9 +17,10 @@ class ClassNameSchema(Schema):
     weapon_proficiencies = fields.Str()
     tools = fields.Str()
     skill_choice = fields.Str()
-    # ability = fields.Nested(
-    #     'AbilitySchema',
-    #     only=['id', 'name', 'url'])
+    abilities = fields.Nested(
+        'AbilitySchema',
+        only=['id', 'name', 'url'],
+        many=True)
 
 
 class_name_schema = ClassNameSchema()

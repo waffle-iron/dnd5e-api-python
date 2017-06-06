@@ -34,8 +34,19 @@ from dnd5eApi.models.trait import Trait
 db.create_all()
 db.session.commit()
 
-from seeds.class_names import Class_Names
-for class_name in Class_Names:
+from seeds.abilities import Abilities
+for ability in Abilities:
+    new_ability = Ability(
+        ability["name"],
+        ability["description"],
+        ability["measures"],
+        ability["important_for"]
+    )
+    print(new_ability)
+    db.session.add(new_ability)
+
+from seeds.class_names import ClassNames
+for class_name in ClassNames:
     new_class_name = ClassName(
         class_name["name"],
         class_name["short_description"],
@@ -90,8 +101,10 @@ for race in Races:
 db.session.commit()
 
 # Joins Tables
-from seeds.racial_languages import CreateRacialLanguageRelationship
+from seeds.class_primary_abilities import CreateClassPrimaryAbilityRelationship
+CreateClassPrimaryAbilityRelationship(db, ClassName, Ability)
 
+from seeds.racial_languages import CreateRacialLanguageRelationship
 CreateRacialLanguageRelationship(db, Race, Language)
 
 # commit the changes
