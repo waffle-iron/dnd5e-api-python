@@ -21,6 +21,10 @@ class ClassNameSchema(Schema):
         'AbilitySchema',
         only=['id', 'name', 'url'],
         many=True)
+    saving_throws = fields.Nested(
+        'AbilitySchema',
+        only=['id', 'name', 'url'],
+        many=True)
 
 
 class_name_schema = ClassNameSchema()

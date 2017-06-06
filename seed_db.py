@@ -11,8 +11,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # import joins tables
-# from dnd5eApi.models.class_primary_ability import class_primary_ability
-# from dnd5eApi.models.class_saving_throws import class_saving_throws
+from dnd5eApi.models.class_primary_ability import class_primary_ability
+from dnd5eApi.models.class_saving_throws import class_saving_throws
 # from dnd5eApi.models.class_skills import class_skills
 # from dnd5eApi.models.racial_ability_bonuses import racial_ability_bonuses
 from dnd5eApi.models.racial_languages import racial_languages
@@ -103,6 +103,9 @@ db.session.commit()
 # Joins Tables
 from seeds.class_primary_abilities import CreateClassPrimaryAbilityRelationship
 CreateClassPrimaryAbilityRelationship(db, ClassName, Ability)
+
+from seeds.class_saving_throws import CreateClassSavingThrowsRelationship
+CreateClassSavingThrowsRelationship(db, ClassName, Ability)
 
 from seeds.racial_languages import CreateRacialLanguageRelationship
 CreateRacialLanguageRelationship(db, Race, Language)
