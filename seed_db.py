@@ -14,7 +14,6 @@ db = SQLAlchemy(app)
 from dnd5eApi.models.class_primary_ability import class_primary_ability
 from dnd5eApi.models.class_saving_throws import class_saving_throws
 # from dnd5eApi.models.class_skills import class_skills
-# from dnd5eApi.models.racial_ability_bonuses import racial_ability_bonuses
 from dnd5eApi.models.racial_languages import racial_languages
 # from dnd5eApi.models.racial_skills import racial_skills
 # from dnd5eApi.models.racial_traits import racial_traits
@@ -29,6 +28,7 @@ from dnd5eApi.models.race import Race
 from dnd5eApi.models.skill import Skill
 from dnd5eApi.models.subclass import Subclass
 from dnd5eApi.models.trait import Trait
+from dnd5eApi.models.racial_ability_bonus import RacialAbilityBonus
 
 # create the database and the database table
 db.create_all()
@@ -97,6 +97,29 @@ for race in Races:
     print(new_race)
     db.session.add(new_race)
 
+# # commit the changes
+# db.session.commit()
+    
+# from seeds.racial_ability_bonuses import RacialAbilityBonuses
+# for racial_ability_bonus in RacialAbilityBonuses:
+#     if racial_ability_bonus["subrace"] is None:
+#         new_racial_ability_bonus = RacialAbilityBonus(
+#             Race.query.filter_by( name = racial_ability_bonus["race"]).first().id,
+#             Ability.query.filter_by( name = racial_ability_bonus["ability"]).first().id,
+#             racial_ability_bonus["bonus"]
+#         )
+    
+#     if racial_ability_bonus["subrace"] is not None:
+#         new_racial_ability_bonus = RacialAbilityBonus(
+#             Race.query.filter_by( subrace = racial_ability_bonus["subrace"]).first().id,
+#             Ability.query.filter_by( name = racial_ability_bonus["ability"]).first().id,
+#             racial_ability_bonus["bonus"]
+#         )
+    
+    
+#     print(new_racial_ability_bonus)
+#     db.session.add(new_racial_ability_bonus)
+
 # commit the changes
 db.session.commit()
 
@@ -109,6 +132,9 @@ CreateClassSavingThrowsRelationship(db, ClassName, Ability)
 
 from seeds.racial_languages import CreateRacialLanguageRelationship
 CreateRacialLanguageRelationship(db, Race, Language)
+
+from seeds.racial_ability_bonuses import CreateRacialAbilityBonusRelationship
+CreateRacialAbilityBonusRelationship(db, Race, Ability, RacialAbilityBonus)
 
 # commit the changes
 db.session.commit()
